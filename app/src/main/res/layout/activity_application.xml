@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+
+    <ImageView
+        android:id="@+id/application_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/entrance1" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="300dip"
+        android:layout_alignParentBottom="true"
+        android:background="@mipmap/entrance_bottom_bg" />
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/title"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="18dip"
+        android:orientation="horizontal">
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/application_icon"
+            android:layout_width="40dip"
+            android:layout_height="40dip"
+            android:layout_gravity="left"
+            app:failureImage="@mipmap/default_icon"
+            app:placeholderImage="@mipmap/default_icon"
+            app:roundAsCircle="true" />
+
+        <TextView
+            android:id="@+id/app_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="20dip"
+            android:text="@string/app_introduce"
+            android:textColor="#b3ffffff"
+            android:textSize="@dimen/text_size_20sp" />
+
+
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="35dp"
+        android:gravity="center_horizontal"
+        android:text="@string/author_info"
+        android:textColor="#b3ffffff"
+        android:textSize="12sp" />
+
+</RelativeLayout>
