@@ -12,6 +12,7 @@ import net.anumbrella.lkshop.ui.viewholder.CategorizeDetailProductViewHolder;
 /**
  * author：Anumbrella
  * Date：16/6/4 下午7:14
+ * YT
  */
 public class CategorizeDetailProductAdapter extends RecyclerArrayAdapter<ListProductContentModel> {
 
