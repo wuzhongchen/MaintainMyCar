@@ -4,7 +4,10 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="immediatelyEnter">立即进入</string>
-    <string name="login">登录</string>
+    <string name="login">登 录</string>
+    <string name="phone_num">手机号码</string>
+    <string name="verify_word">验证码</string>
+    <string name="send_verify_word">发送验证码</string>
     <string name="strPoint">指示器</string>
     <string name="user_desc">签名~</string>
     <string name="view_net_error">世界上最遥远的距离就是没有网</string>

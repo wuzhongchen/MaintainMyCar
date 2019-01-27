@@ -1,114 +1,178 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.jude.fitsystemwindowlayout.FitSystemWindowsLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/milk_white"
-    android:fitsSystemWindows="true"
-    android:orientation="vertical">
+    android:background="@color/bg_login">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dip"
-        android:background="?colorPrimary">
+    <ImageView
+        android:layout_above="@id/txt_phone_num"
+        android:layout_centerHorizontal="true"
+        android:src="@mipmap/logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"/>
 
-        <Button
-            android:id="@+id/btn_back"
-            android:layout_width="30dip"
-            android:layout_height="30dip"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="20dip"
-            android:background="@drawable/btn_back_selector" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="15dip"
-            android:layout_toRightOf="@+id/btn_back"
-            android:text="用户登录"
-            android:textColor="@color/white"
-            android:textSize="@dimen/text_size_20sp" />
-
-    </RelativeLayout>
-
+    <TextView
+        android:id="@+id/txt_phone_num"
+        android:text="@string/phone_num"
+        android:textColor="@color/white"
+        android:textSize="17sp"
+        android:layout_above="@id/top_ll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginBottom="10dp"/>
 
     <LinearLayout
+        android:id="@+id/top_ll"
+        android:layout_centerInParent="true"
+        android:background="@drawable/button_round_border"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/register_bg_color"
-        android:orientation="vertical"
-        android:paddingTop="5dip">
-
-        <net.anumbrella.customedittext.FloatLabelView
+        android:layout_height="45dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginBottom="21dp"
+        >
+        <EditText
             android:id="@+id/login_phone"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/white"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dip"
-            android:layout_marginRight="10dip"
-            android:layout_marginTop="10dip"
-            android:hint="手机号"
-            android:layout="@layout/custom_edittext"
-            android:textColorHint="@color/register_hint_text_color"
-            app:bottomDistance="2dip"
-            app:leftDistance="1dip" />
+            android:layout_height="match_parent"
+            android:background="@null">
+        </EditText>
+    </LinearLayout>
 
-        <net.anumbrella.customedittext.FloatLabelView
+    <TextView
+        android:id="@+id/txt_verify_num"
+        android:text="@string/verify_word"
+        android:textColor="@color/white"
+        android:textSize="17sp"
+        android:layout_below="@id/top_ll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginBottom="10dp"/>
+
+    <LinearLayout
+        android:id="@+id/center_ll"
+        android:layout_below="@id/txt_verify_num"
+        android:background="@drawable/button_round_border"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="45dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp">
+        <EditText
             android:id="@+id/login_password"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dip"
-            android:layout_marginRight="10dip"
-            android:layout_marginTop="10dip"
-            android:hint="密码"
-            android:layout="@layout/custom_edittext"
-            android:textColorHint="@color/register_hint_text_color"
-            app:bottomDistance="2dip"
-            app:leftDistance="1dip" />
-
-        <RelativeLayout
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/white"
+            android:background="@null">
+        </EditText>
+        <TextView
+            android:text="@string/send_verify_word"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="20dip"
-            android:layout_marginTop="20dip">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/btn_register"
-                    android:layout_width="0dip"
-                    android:layout_height="40dip"
-                    android:layout_marginLeft="10dip"
-                    android:layout_weight="1"
-                    android:background="@drawable/button_register"
-                    android:text="注册"
-                    android:textColor="@color/login_btn_text_color" />
-
-                <Button
-                    android:id="@+id/btn_login"
-                    android:layout_width="0dip"
-                    android:layout_height="40dip"
-                    android:layout_marginLeft="10dip"
-                    android:layout_marginRight="10dip"
-                    android:layout_weight="1"
-                    android:background="@drawable/button_login"
-                    android:text="登录"
-                    android:textColor="@color/white" />
-            </LinearLayout>
-        </RelativeLayout>
-
-        <TextView
-            android:id="@+id/forget_password"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="30dip"
-            android:layout_marginLeft="10dip"
-            android:text="忘了密码?点此找回"
-            android:textColor="#0fc4d9" />
+            android:layout_margin="3dp"
+            android:background="@drawable/button_round_border_red"
+            android:layout_weight="2"/>
     </LinearLayout>
-</com.jude.fitsystemwindowlayout.FitSystemWindowsLinearLayout>
+
+    <TextView
+        android:id="@+id/btn_login"
+        android:layout_below="@id/center_ll"
+        android:layout_marginTop="41dp"
+        android:background="@drawable/button_round_border_red"
+        android:text="@string/login"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp"/>
+
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="@color/register_bg_color"-->
+        <!--android:orientation="vertical"-->
+        <!--android:paddingTop="5dip">-->
+
+        <!--<net.anumbrella.customedittext.FloatLabelView-->
+            <!--android:id="@+id/login_phone"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginLeft="10dip"-->
+            <!--android:layout_marginRight="10dip"-->
+            <!--android:layout_marginTop="10dip"-->
+            <!--android:hint="手机号"-->
+            <!--android:layout="@layout/custom_edittext"-->
+            <!--android:textColorHint="@color/register_hint_text_color"-->
+            <!--app:bottomDistance="2dip"-->
+            <!--app:leftDistance="1dip" />-->
+
+        <!--<net.anumbrella.customedittext.FloatLabelView-->
+            <!--android:id="@+id/login_password"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginLeft="10dip"-->
+            <!--android:layout_marginRight="10dip"-->
+            <!--android:layout_marginTop="10dip"-->
+            <!--android:hint="密码"-->
+            <!--android:layout="@layout/custom_edittext"-->
+            <!--android:textColorHint="@color/register_hint_text_color"-->
+            <!--app:bottomDistance="2dip"-->
+            <!--app:leftDistance="1dip" />-->
+
+        <!--<RelativeLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_marginBottom="20dip"-->
+            <!--android:layout_marginTop="20dip">-->
+
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:gravity="center"-->
+                <!--android:orientation="horizontal">-->
+
+                <!--<Button-->
+                    <!--android:id="@+id/btn_register"-->
+                    <!--android:layout_width="0dip"-->
+                    <!--android:layout_height="40dip"-->
+                    <!--android:layout_marginLeft="10dip"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:background="@drawable/button_register"-->
+                    <!--android:text="注册"-->
+                    <!--android:textColor="@color/login_btn_text_color" />-->
+
+                <!--<Button-->
+                    <!--android:id="@+id/btn_login"-->
+                    <!--android:layout_width="0dip"-->
+                    <!--android:layout_height="40dip"-->
+                    <!--android:layout_marginLeft="10dip"-->
+                    <!--android:layout_marginRight="10dip"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:background="@drawable/button_login"-->
+                    <!--android:text="登录"-->
+                    <!--android:textColor="@color/white" />-->
+            <!--</LinearLayout>-->
+        <!--</RelativeLayout>-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/forget_password"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_marginBottom="30dip"-->
+            <!--android:layout_marginLeft="10dip"-->
+            <!--android:text="忘了密码?点此找回"-->
+            <!--android:textColor="#0fc4d9" />-->
+    <!--</LinearLayout>-->
+</RelativeLayout>

@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -54,22 +55,19 @@ public class LoginActivity extends BaseThemeSettingActivity {
     private String startUp;
 
     @BindView(R.id.btn_login)
-    Button btn_login;
+    TextView btn_login;
+//
+//    @BindView(R.id.btn_register)
+//    Button btn_register;
 
-    @BindView(R.id.btn_register)
-    Button btn_register;
-
-    @BindView(R.id.forget_password)
-    TextView forget_password;
-
-    @BindView(R.id.btn_back)
-    Button btn_back;
+//    @BindView(R.id.forget_password)
+//    TextView forget_password;
 
     @BindView(R.id.login_phone)
-    FloatLabelView login_phone;
+    EditText login_phone;
 
     @BindView(R.id.login_password)
-    FloatLabelView login_password;
+    EditText login_password;
 
 
     @Override
@@ -77,7 +75,7 @@ public class LoginActivity extends BaseThemeSettingActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
-        login_password.getEditText().setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        login_password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
         if (getIntent().getStringExtra("startUp") != null) {
             startUp = getIntent().getStringExtra("startUp");
         }
@@ -92,7 +90,7 @@ public class LoginActivity extends BaseThemeSettingActivity {
 
 
 
-    @OnClick({R.id.btn_register, R.id.btn_login, R.id.forget_password, R.id.btn_back})
+    @OnClick({ R.id.btn_login})
     public void clickBtn(View view) {
         switch (view.getId()) {
             case R.id.btn_login:
@@ -102,36 +100,24 @@ public class LoginActivity extends BaseThemeSettingActivity {
                 }
                 getData();
                 break;
-            case R.id.btn_register:
-                Intent intent_register = new Intent();
-                intent_register.setClass(this, RegisterActivity.class);
-                startActivity(intent_register);
-                break;
-            case R.id.forget_password:
-                Intent intent_forget_password = new Intent();
-                intent_forget_password.setClass(this, FindPasswordActivity.class);
-                startActivity(intent_forget_password);
-                break;
-            case R.id.btn_back:
-                if (startUp != null) {
-                    if (startUp.equals("main")) {
-                        finish();
-                    } else {
-                        Intent intent = new Intent();
-                        intent.setClass(this, MainActivity.class);
-                        startActivity(intent);
-                        finish();
-                    }
-                }
-                break;
+//            case R.id.btn_register:
+//                Intent intent_register = new Intent();
+//                intent_register.setClass(this, RegisterActivity.class);
+//                startActivity(intent_register);
+//                break;
+//            case R.id.forget_password:
+//                Intent intent_forget_password = new Intent();
+//                intent_forget_password.setClass(this, FindPasswordActivity.class);
+//                startActivity(intent_forget_password);
+//                break;
             default:
                 break;
         }
     }
 
     private void getData() {
-        phone = login_phone.getEditText().getText().toString().trim();
-        password = login_password.getEditText().getText().toString().trim();
+        phone = login_phone.getText().toString().trim();
+        password = login_password.getText().toString().trim();
 
         if (phone.equals("") && prompt) {
             Toast.makeText(this, "手机号不能为空", Toast.LENGTH_SHORT).show();

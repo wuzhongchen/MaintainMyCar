@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#00A8F1</color>
     <color name="colorAccent">#038ECE</color>
 
+    <color name="bg_login">#262626</color>
 
     <color name="welcomeText">#4682B4</color>
     <color name="tabHostBg">#F6F6F6</color>
