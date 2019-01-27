@@ -5,6 +5,14 @@ Properties props = new Properties()
 props.load(new FileInputStream(file("../config/key.properties")))
 
 android {
+    signingConfigs {
+        release {
+            storeFile file(getProjectDir().path + '/maintainmycar.keystore')
+            keyAlias 'maintainmycar'
+            keyPassword '123321'
+            storePassword '123321'
+        }
+    }
     compileSdkVersion 23
     buildToolsVersion '27.0.3'
     flavorDimensions "default"
@@ -77,5 +85,6 @@ dependencies {
     implementation name:'SMSSDK-2.0.2',ext:'aar'
     implementation name:'SMSSDKGUI-2.0.2',ext:'aar'
     implementation project(':PushSDK')
-
+    implementation 'com.amap.api:3dmap:latest.integration'
+    implementation 'com.amap.api:location:latest.integration'
 }
