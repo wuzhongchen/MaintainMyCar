@@ -2,9 +2,6 @@ package net.anumbrella.lkshop.model.bean;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.util.Log;
-
-import java.util.HashMap;
 
 /**
  * author：Anumbrella
@@ -26,7 +23,7 @@ public class ListProductContentModel implements Parcelable {
 
     private int storage;
 
-    private int carrieroperator;
+    private int carrierOperator;
 
     private int sum;
 
@@ -45,7 +42,7 @@ public class ListProductContentModel implements Parcelable {
         price = in.readFloat();
         color = in.readInt();
         storage = in.readInt();
-        carrieroperator = in.readInt();
+        carrierOperator = in.readInt();
         sum = in.readInt();
         uid = in.readInt();
     }
@@ -59,7 +56,7 @@ public class ListProductContentModel implements Parcelable {
         dest.writeFloat(price);
         dest.writeInt(color);
         dest.writeInt(storage);
-        dest.writeInt(carrieroperator);
+        dest.writeInt(carrierOperator);
         dest.writeInt(sum);
         dest.writeInt(uid);
     }
@@ -137,12 +134,12 @@ public class ListProductContentModel implements Parcelable {
         this.storage = storage;
     }
 
-    public int getCarrieroperator() {
-        return carrieroperator;
+    public int getCarrierOperator() {
+        return carrierOperator;
     }
 
-    public void setCarrieroperator(int carrieroperator) {
-        this.carrieroperator = carrieroperator;
+    public void setCarrierOperator(int carrierOperator) {
+        this.carrierOperator = carrierOperator;
     }
 
     public int getSum() {

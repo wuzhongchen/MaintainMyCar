@@ -1,5 +1,6 @@
 package net.anumbrella.lkshop.ui.fragment;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;

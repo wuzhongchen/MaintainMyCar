@@ -32,7 +32,7 @@ public class CommentProductDataModel implements Parcelable {
         userIcon = in.readString();
         img = in.readString();
         type = in.readInt();
-        carrieroperator = in.readInt();
+        carrierOperator = in.readInt();
         color = in.readInt();
         storage = in.readInt();
         cid = in.readInt();
@@ -54,7 +54,7 @@ public class CommentProductDataModel implements Parcelable {
         dest.writeString(userIcon);
         dest.writeString(img);
         dest.writeInt(type);
-        dest.writeInt(carrieroperator);
+        dest.writeInt(carrierOperator);
         dest.writeInt(color);
         dest.writeInt(storage);
         dest.writeInt(cid);
@@ -89,7 +89,7 @@ public class CommentProductDataModel implements Parcelable {
 
     private String img;
     private int type;
-    private int carrieroperator;
+    private int carrierOperator;
     private int color;
     private int storage;
     private int cid;
@@ -125,12 +125,12 @@ public class CommentProductDataModel implements Parcelable {
         this.type = type;
     }
 
-    public int getCarrieroperator() {
-        return carrieroperator;
+    public int getCarrierOperator() {
+        return carrierOperator;
     }
 
-    public void setCarrieroperator(int carrieroperator) {
-        this.carrieroperator = carrieroperator;
+    public void setCarrierOperator(int carrierOperator) {
+        this.carrierOperator = carrierOperator;
     }
 
     public int getColor() {
@@ -269,7 +269,7 @@ public class CommentProductDataModel implements Parcelable {
         public String img;
         public int phoneStorage;
         public int phoneColor;
-        public int phoneCarrieroperator;
+        public int phoneCarrierOperator;
 
         public int getPhoneStorage() {
             return phoneStorage;
@@ -287,12 +287,12 @@ public class CommentProductDataModel implements Parcelable {
             this.phoneColor = phoneColor;
         }
 
-        public int getPhoneCarrieroperator() {
-            return phoneCarrieroperator;
+        public int getPhoneCarrierOperator() {
+            return phoneCarrierOperator;
         }
 
-        public void setPhoneCarrieroperator(int phoneCarrieroperator) {
-            this.phoneCarrieroperator = phoneCarrieroperator;
+        public void setPhoneCarrierOperator(int phoneCarrierOperator) {
+            this.phoneCarrierOperator = phoneCarrierOperator;
         }
 
         public String getProductName() {

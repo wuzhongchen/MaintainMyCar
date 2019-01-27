@@ -57,7 +57,7 @@ public class ProductDetailViewHoler extends BaseViewHolder<CommentProductDataMod
         this.data = productDataModel.getProductDetailData();
 
         String storage = BaseUtils.transform("storage", String.valueOf(data.getPhoneStorage()));
-        String carrieroperator = BaseUtils.transform("carrieroperator", String.valueOf(data.getPhoneCarrieroperator()));
+        String carrieroperator = BaseUtils.transform("carrieroperator", String.valueOf(data.getPhoneCarrierOperator()));
         String color = BaseUtils.transform("color", String.valueOf(data.getPhoneColor()));
         if (storage != null && carrieroperator != null && color != null) {
             phone_storage.setText(storage);

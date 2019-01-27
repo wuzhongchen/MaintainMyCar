@@ -54,7 +54,7 @@ public class CategorizeDetailProductViewHolder extends BaseViewHolder<ListProduc
         name.setText(data.getTitle());
         price.setText("￥ " + data.getPrice());
         color.setText(BaseUtils.transform("color", String.valueOf(data.getColor())));
-        carrieroperator.setText(BaseUtils.transform("carrieroperator", String.valueOf(data.getCarrieroperator())));
+        carrieroperator.setText(BaseUtils.transform("carrieroperator", String.valueOf(data.getCarrierOperator())));
         storage.setText(BaseUtils.transform("storage", String.valueOf(data.getStorage())));
         phoneType.setText(BaseUtils.transform("phoneType", String.valueOf(data.getType())));
         cardView.setOnClickListener(this);

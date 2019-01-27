@@ -34,9 +34,11 @@ import com.orhanobut.dialogplus.ViewHolder;
 
 import net.anumbrella.lkshop.R;
 import net.anumbrella.lkshop.adapter.CommentProductAdapter;
+import net.anumbrella.lkshop.adapter.ImageProductAdapter;
 import net.anumbrella.lkshop.db.DBManager;
 import net.anumbrella.lkshop.model.CommentDataModel;
 import net.anumbrella.lkshop.model.bean.CommentProductDataModel;
+import net.anumbrella.lkshop.model.bean.ImageProductDataModel;
 import net.anumbrella.lkshop.model.bean.ListProductContentModel;
 import net.anumbrella.lkshop.model.bean.RecommendContentModel;
 import net.anumbrella.lkshop.ui.activity.DetailContentActivity;
@@ -57,6 +59,7 @@ import rx.Subscriber;
  */
 public class DetailContentFragment extends Fragment {
 
+    private  List<ImageProductDataModel> imageList=new ArrayList<>();
 
     public static final String ARG_ITEM_INFO_RECOMMEND = "item_info_recommend";
 
@@ -68,7 +71,7 @@ public class DetailContentFragment extends Fragment {
 
     private boolean isCollectFlag = false;
 
-    private Context mcontext;
+    private Context mContext;
 
     public static CommentProductAdapter adapter;
 
@@ -104,6 +107,8 @@ public class DetailContentFragment extends Fragment {
     @BindView(R.id.collect_layout)
     LinearLayout collect_layout;
 
+    @BindView(R.id.image_content)
+    EasyRecyclerView imageRecyclerView;
 
     @BindView(R.id.comment_content)
     EasyRecyclerView recyclerView;
@@ -120,7 +125,6 @@ public class DetailContentFragment extends Fragment {
         return fragment;
     }
 
-
     public static DetailContentFragment newInstance(RecommendContentModel data) {
         DetailContentFragment fragment = new DetailContentFragment();
         Bundle args = new Bundle();
@@ -129,12 +133,11 @@ public class DetailContentFragment extends Fragment {
         return fragment;
     }
 
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mcontext = getContext();
-        uid = BaseUtils.readLocalUser(mcontext).getUid();
+        mContext = getContext();
+        uid = BaseUtils.readLocalUser(mContext).getUid();
     }
 
     @Override
@@ -151,8 +154,8 @@ public class DetailContentFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_detailcontent, container, false);
         ButterKnife.bind(this, view);
-        recyclerView.setLayoutManager(new LinearLayoutManager(mcontext));
-        adapter = new CommentProductAdapter(mcontext);
+        recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
+        adapter = new CommentProductAdapter(mContext);
         recyclerView.setErrorView(R.layout.view_net_comment_error);
         recyclerView.setAdapterWithProgress(adapter);
         setData();
@@ -174,12 +177,20 @@ public class DetailContentFragment extends Fragment {
 
             pid = recommendContentModel.getPid();
             collapsingToolbar.setTitle(recommendContentModel.getTitle());
+
+            initImages();
+            LinearLayoutManager layoutManager=new LinearLayoutManager(mContext);
+            layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+            imageRecyclerView.setLayoutManager(layoutManager);
+            ImageProductAdapter adapter=new ImageProductAdapter(imageList);
+            imageRecyclerView.setAdapter(adapter);
+
             productDataModelData = new CommentProductDataModel();
             productDetailData = productDataModelData.getProductDetailData();
             productDetailData.setPrice(recommendContentModel.getPrice());
             productDetailData.setProductName(recommendContentModel.getTitle());
             productDetailData.setImg(recommendContentModel.getImageUrl());
-            productDetailData.setPhoneCarrieroperator(recommendContentModel.getCarrieroperator());
+            productDetailData.setPhoneCarrierOperator(recommendContentModel.getCarrieroperator());
             productDetailData.setPhoneColor(recommendContentModel.getColor());
             productDetailData.setPhoneStorage(recommendContentModel.getStorage());
 
@@ -192,38 +203,56 @@ public class DetailContentFragment extends Fragment {
                 }
                 pid = listProductContentModel.getPid();
                 collapsingToolbar.setTitle(listProductContentModel.getTitle());
+
+                initImages();
+                LinearLayoutManager layoutManager=new LinearLayoutManager(mContext);
+                layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+                imageRecyclerView.setLayoutManager(layoutManager);
+                ImageProductAdapter adapter=new ImageProductAdapter(imageList);
+                imageRecyclerView.setAdapter(adapter);
+
                 productDataModelData = new CommentProductDataModel();
                 productDetailData = productDataModelData.getProductDetailData();
                 productDetailData.setPrice(listProductContentModel.getPrice());
                 productDetailData.setProductName(listProductContentModel.getTitle());
                 productDetailData.setImg(listProductContentModel.getImageUrl());
-                productDetailData.setPhoneCarrieroperator(listProductContentModel.getCarrieroperator());
+                productDetailData.setPhoneCarrierOperator(listProductContentModel.getCarrierOperator());
                 productDetailData.setPhoneColor(listProductContentModel.getColor());
                 productDetailData.setPhoneStorage(listProductContentModel.getStorage());
             }
         }
 
-        upadateCollectState();
-        upadteAddShoppingState();
+        updateCollectState();
+        updateAddShoppingState();
         appbar.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
 
             @Override
             public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
                 int maxScroll = appBarLayout.getTotalScrollRange();
                 float percentage = (float) Math.abs(verticalOffset) / (float) maxScroll;
-                TypedArray array = getActivity().getTheme().obtainStyledAttributes(new int[] {
-                        android.R.attr.colorPrimary,
-                });
-                int color = array.getColor(0, 0xFF00FF);
+                TypedArray array = null;
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+                    array = getActivity().getTheme().obtainStyledAttributes(new int[] {
+                            android.R.attr.colorPrimary,
+                    });
+                }
+                int color = array != null ? array.getColor(0, 0xFF00FF) : 0;
                 int red = (color & 0xff0000) >> 16;
                 int green = (color & 0x00ff00) >> 8;
                 int blue = (color & 0x0000ff);
                 toolbar.setBackgroundColor(Color.argb((int) (percentage * 255), red, green, blue));
-                array.recycle();
+                if (array != null) {
+                    array.recycle();
+                }
 
             }
         });
         return view;
+    }
+
+    public void initImages(){
+        ImageProductDataModel image=new ImageProductDataModel("https://gss0.bdstatic.com/94o3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike92%2C5%2C5%2C92%2C30/sign=f93219a3b851f819e5280b18bbdd2188/b3b7d0a20cf431ad0bcfdcb14336acaf2edd981d.jpg");
+        imageList.add(image);
     }
 
     public void setData() {
@@ -273,7 +302,7 @@ public class DetailContentFragment extends Fragment {
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @OnClick({R.id.collect_layout, R.id.add_product_shopping, R.id.detail_data_pay})
     public void click(View view) {
-        if (BaseUtils.checkLogin(mcontext)) {
+        if (BaseUtils.checkLogin(mContext)) {
             switch (view.getId()) {
                 case R.id.collect_layout:
                     if (isCollectFlag) {
@@ -281,7 +310,7 @@ public class DetailContentFragment extends Fragment {
                         collect_tip.setText("收藏");
                         isCollectFlag = false;
                         if (pid > 0 && uid > 0) {
-                            DBManager.getManager(mcontext).deleteCollect(pid, uid);
+                            DBManager.getManager(mContext).deleteCollect(pid, uid);
                         }
                     } else {
                         collect_icon.setBackground(getResources().getDrawable(R.mipmap.collect_ok));
@@ -289,7 +318,7 @@ public class DetailContentFragment extends Fragment {
                         Toast.makeText(getContext(), "已经收藏", Toast.LENGTH_SHORT).show();
                         isCollectFlag = true;
                         if (pid > 0 && uid > 0) {
-                            DBManager.getManager(mcontext).addCollect(pid, uid);
+                            DBManager.getManager(mContext).addCollect(pid, uid);
                         }
                     }
                     break;
@@ -299,6 +328,7 @@ public class DetailContentFragment extends Fragment {
                         createDialog();
                     }
                     break;
+
                 case R.id.detail_data_pay:
                     if (uid > 0) {
                         Intent intent = new Intent();
@@ -314,7 +344,7 @@ public class DetailContentFragment extends Fragment {
                             passOnData.setSum(1);
                             passOnData.setPrice(recommendContentModel.getPrice());
                             passOnData.setImageUrl(recommendContentModel.getImageUrl());
-                            passOnData.setCarrieroperator(recommendContentModel.getCarrieroperator());
+                            passOnData.setCarrierOperator(recommendContentModel.getCarrieroperator());
                             passOnData.setStorage(recommendContentModel.getStorage());
                             passOnData.setColor(recommendContentModel.getColor());
                             passOnData.setType(recommendContentModel.getType());
@@ -332,9 +362,8 @@ public class DetailContentFragment extends Fragment {
         }
     }
 
-
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-    public void upadteAddShoppingState() {
+    public void updateAddShoppingState() {
         if (checkAddShoppingState()) {
             JUtils.Toast("已经加入购物车");
             add_product_shopping.setBackground(getResources().getDrawable(R.color.addShopping_bg));
@@ -344,18 +373,17 @@ public class DetailContentFragment extends Fragment {
     }
 
     public boolean checkAddShoppingState() {
-        boolean isAddShopping = DBManager.getManager(mcontext).checkShopping(pid, uid);
+        boolean isAddShopping = DBManager.getManager(mContext).checkShopping(pid, uid);
         return isAddShopping;
     }
 
-
     private void createDialog() {
         final TextView dialog_product_sum;
-        View view = LayoutInflater.from(mcontext).inflate(R.layout.product_detail_dialog_content, null);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.product_detail_dialog_content, null);
         dialog_product_sum = ((TextView) view.findViewById(R.id.dialog_product_sum));
-        if (productDetailData.getPhoneColor() != -1 && productDetailData.getPhoneCarrieroperator() != -1 && productDetailData.getPhoneStorage() != -1) {
+        if (productDetailData.getPhoneColor() != -1 && productDetailData.getPhoneCarrierOperator() != -1 && productDetailData.getPhoneStorage() != -1) {
             ((TextView) view.findViewById(R.id.dialog_phone_color)).setText(BaseUtils.transform("color", String.valueOf(productDetailData.getPhoneColor())));
-            ((TextView) view.findViewById(R.id.dialog_phone_carrieroperator)).setText(BaseUtils.transform("carrieroperator", String.valueOf(productDetailData.getPhoneCarrieroperator())));
+            ((TextView) view.findViewById(R.id.dialog_phone_carrieroperator)).setText(BaseUtils.transform("carrieroperator", String.valueOf(productDetailData.getPhoneCarrierOperator())));
             ((TextView) view.findViewById(R.id.dialog_phone_stroage)).setText(BaseUtils.transform("storage", String.valueOf(productDetailData.getPhoneStorage())));
         } else {
             ((LinearLayout) view.findViewById(R.id.phone_detail_layout)).setVisibility(View.GONE);
@@ -377,8 +405,8 @@ public class DetailContentFragment extends Fragment {
                     case R.id.dialog_ok:
                         int sum = Integer.parseInt(dialog_product_sum.getText().toString());
                         if (uid > 0 && pid > 0 && sum > 0) {
-                            DBManager.getManager(mcontext).addShopping(pid, uid, sum);
-                            upadteAddShoppingState();
+                            DBManager.getManager(mContext).addShopping(pid, uid, sum);
+                            updateAddShoppingState();
                         }
                         dialog.dismiss();
                         break;
@@ -395,7 +423,7 @@ public class DetailContentFragment extends Fragment {
         };
 
 
-        DialogPlus dialogPlus = DialogPlus.newDialog(mcontext)
+        DialogPlus dialogPlus = DialogPlus.newDialog(mContext)
                 .setContentHolder(holder)
                 .setGravity(Gravity.BOTTOM)
                 .setFooter(R.layout.product_detail_dialog_footer)
@@ -405,10 +433,9 @@ public class DetailContentFragment extends Fragment {
         dialogPlus.show();
     }
 
-
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-    public void upadateCollectState() {
-        boolean isCollect = DBManager.getManager(mcontext).checkCollect(pid, uid);
+    public void updateCollectState() {
+        boolean isCollect = DBManager.getManager(mContext).checkCollect(pid, uid);
         if (isCollect) {
             isCollectFlag = true;
             collect_icon.setBackground(getResources().getDrawable(R.mipmap.collect_ok));

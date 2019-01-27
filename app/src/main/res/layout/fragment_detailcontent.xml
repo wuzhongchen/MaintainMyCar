@@ -29,6 +29,12 @@
                 android:fitsSystemWindows="true"
                 app:expandedTitleMarginEnd="64dp"
                 app:expandedTitleMarginStart="48dp">
+                <com.jude.easyrecyclerview.EasyRecyclerView
+                    android:id="@+id/image_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </com.jude.easyrecyclerview.EasyRecyclerView>
 
                 <com.facebook.drawee.view.SimpleDraweeView
                     android:id="@+id/backdrop"
@@ -55,16 +61,30 @@
         <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+            app:layout_behavior= "@string/appbar_scrolling_view_behavior">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
-
-
+                <TextView
+                    android:layout_width="match_parent"
+                    android:gravity="center_horizontal"
+                    android:layout_height="wrap_content"
+                    android:text="——宝贝评价——"/>
                 <com.jude.easyrecyclerview.EasyRecyclerView
                     android:id="@+id/comment_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scrollbars="none"
+                    app:layout_progress="@layout/page_progress" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:gravity="center_horizontal"
+                    android:layout_height="wrap_content"
+                    android:text="——宝贝详情——"/>
+                <com.jude.easyrecyclerview.EasyRecyclerView
+                    android:id="@+id/detail_content"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scrollbars="none"
@@ -76,14 +96,7 @@
         </android.support.v4.widget.NestedScrollView>
 
 
-        <android.support.design.widget.FloatingActionButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/fab_margin"
-            android:clickable="true"
-            android:src="@mipmap/quality"
-            app:layout_anchor="@id/appBar"
-            app:layout_anchorGravity="bottom|right|end" />
+
 
     </android.support.design.widget.CoordinatorLayout>
 

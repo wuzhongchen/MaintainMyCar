@@ -171,7 +171,7 @@ public class DBManager {
                 listProductContentModel.setType(cursor.getInt(cursor.getColumnIndex("productType")));
                 listProductContentModel.setColor(cursor.getInt(cursor.getColumnIndex("color")));
                 listProductContentModel.setStorage(cursor.getInt(cursor.getColumnIndex("storage")));
-                listProductContentModel.setCarrieroperator(cursor.getInt(cursor.getColumnIndex("carrieroperator")));
+                listProductContentModel.setCarrierOperator(cursor.getInt(cursor.getColumnIndex("carrieroperator")));
                 listDatas.add(listProductContentModel);
             } while (cursor.moveToNext());
         }
@@ -217,7 +217,7 @@ public class DBManager {
                 listProductContentModel.setType(cursor.getInt(cursor.getColumnIndex("productType")));
                 listProductContentModel.setColor(cursor.getInt(cursor.getColumnIndex("color")));
                 listProductContentModel.setStorage(cursor.getInt(cursor.getColumnIndex("storage")));
-                listProductContentModel.setCarrieroperator(cursor.getInt(cursor.getColumnIndex("carrieroperator")));
+                listProductContentModel.setCarrierOperator(cursor.getInt(cursor.getColumnIndex("carrieroperator")));
                 listDatas.add(listProductContentModel);
             } while (cursor.moveToNext());
         }
@@ -248,7 +248,7 @@ public class DBManager {
                 listProductContentModel.setType(cursor.getInt(cursor.getColumnIndex("productType")));
                 listProductContentModel.setColor(cursor.getInt(cursor.getColumnIndex("color")));
                 listProductContentModel.setStorage(cursor.getInt(cursor.getColumnIndex("storage")));
-                listProductContentModel.setCarrieroperator(cursor.getInt(cursor.getColumnIndex("carrieroperator")));
+                listProductContentModel.setCarrierOperator(cursor.getInt(cursor.getColumnIndex("carrieroperator")));
                 listDatas.add(listProductContentModel);
             } while (cursor.moveToNext());
         }
@@ -277,7 +277,7 @@ public class DBManager {
                 listProductContentModel.setType(cursor.getInt(cursor.getColumnIndex("productType")));
                 listProductContentModel.setColor(cursor.getInt(cursor.getColumnIndex("color")));
                 listProductContentModel.setStorage(cursor.getInt(cursor.getColumnIndex("storage")));
-                listProductContentModel.setCarrieroperator(cursor.getInt(cursor.getColumnIndex("carrieroperator")));
+                listProductContentModel.setCarrierOperator(cursor.getInt(cursor.getColumnIndex("carrieroperator")));
                 listDatas.add(listProductContentModel);
             } while (cursor.moveToNext());
         }
@@ -307,7 +307,7 @@ public class DBManager {
                 listProductContentModel.setType(cursor.getInt(cursor.getColumnIndex("productType")));
                 listProductContentModel.setColor(cursor.getInt(cursor.getColumnIndex("color")));
                 listProductContentModel.setStorage(cursor.getInt(cursor.getColumnIndex("storage")));
-                listProductContentModel.setCarrieroperator(cursor.getInt(cursor.getColumnIndex("carrieroperator")));
+                listProductContentModel.setCarrierOperator(cursor.getInt(cursor.getColumnIndex("carrieroperator")));
                 listDatas.add(listProductContentModel);
             } while (cursor.moveToNext());
         }

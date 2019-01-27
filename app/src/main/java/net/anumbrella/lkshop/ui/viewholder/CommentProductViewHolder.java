@@ -96,7 +96,7 @@ public class CommentProductViewHolder extends BaseViewHolder<CommentProductDataM
         if (data.getType() > 1) {
             order_product_detail_describe.setText(data.getProductName());
         } else {
-            String result = "网络类型:" + BaseUtils.transform("carrieroperator", String.valueOf(data.getCarrieroperator()))
+            String result = "网络类型:" + BaseUtils.transform("carrieroperator", String.valueOf(data.getCarrierOperator()))
                     + " 机身颜色:" + BaseUtils.transform("color", String.valueOf(data.getColor()))
                     + " 机身内存:" + BaseUtils.transform("storage", String.valueOf(data.getStorage()));
             order_product_detail_describe.setText(result);
